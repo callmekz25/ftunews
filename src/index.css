@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+* {
+  @apply box-border;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply font-sans text-gray-700 bg-white;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-950 text-gray-300;
+  }
+}
+
+body {
+  margin: 0;
+}

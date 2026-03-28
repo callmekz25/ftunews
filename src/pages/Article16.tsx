@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useBookmarks } from "../context/BookmarkContext";
+import CommentSection from "../components/CommentSection";
 
 export default function Article16() {
   const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
@@ -185,6 +186,9 @@ export default function Article16() {
           />
         </svg>
       </motion.button>
+
+      {/* COMMENT SECTION */}
+      <CommentSection articleId={article.id} />
     </motion.div>
   );
 }

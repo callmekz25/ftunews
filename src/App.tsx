@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BookmarkProvider } from "./context/BookmarkContext";
+import { CommentProvider } from "./context/CommentContext";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
@@ -32,44 +33,49 @@ function App() {
   return (
     <Router>
       <BookmarkProvider>
-        <div className="flex flex-col min-h-screen bg-white text-gray-900">
-          <Header />
+        <CommentProvider>
+          <div className="flex flex-col min-h-screen bg-white text-gray-900">
+            <Header />
 
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/category/:slug" element={<Category />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/easy-job-high-pay-trap" element={<Sample />} />
-              <Route path="/escape-cotswolds" element={<Article1 />} />
-              <Route path="/magic-live-sports" element={<Article4 />} />
-              <Route path="/ai-revolution" element={<Article6 />} />
-              <Route path="/global-politics-2024" element={<Article8 />} />
-              <Route path="/evolution-cinema" element={<Article10 />} />
-              <Route path="/climate-change" element={<Article12 />} />
-              <Route path="/world-war-ii" element={<Article14 />} />
-              <Route
-                path="/mental-health-digital-age"
-                element={<Article16 />}
-              />
-              <Route path="/future-remote-work" element={<Article18 />} />
-              <Route path="/food-culture-world" element={<Article20 />} />
-              <Route
-                path="/renewable-energy-revolution"
-                element={<Article22 />}
-              />
-              <Route path="/art-minimalism" element={<Article24 />} />
-              <Route path="/cybersecurity-essentials" element={<Article26 />} />
-              <Route path="/bookmarks" element={<Bookmarks />} />
-              <Route path="/writers" element={<Writers />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-          </main>
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/category/:slug" element={<Category />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/easy-job-high-pay-trap" element={<Sample />} />
+                <Route path="/escape-cotswolds" element={<Article1 />} />
+                <Route path="/magic-live-sports" element={<Article4 />} />
+                <Route path="/ai-revolution" element={<Article6 />} />
+                <Route path="/global-politics-2024" element={<Article8 />} />
+                <Route path="/evolution-cinema" element={<Article10 />} />
+                <Route path="/climate-change" element={<Article12 />} />
+                <Route path="/world-war-ii" element={<Article14 />} />
+                <Route
+                  path="/mental-health-digital-age"
+                  element={<Article16 />}
+                />
+                <Route path="/future-remote-work" element={<Article18 />} />
+                <Route path="/food-culture-world" element={<Article20 />} />
+                <Route
+                  path="/renewable-energy-revolution"
+                  element={<Article22 />}
+                />
+                <Route path="/art-minimalism" element={<Article24 />} />
+                <Route
+                  path="/cybersecurity-essentials"
+                  element={<Article26 />}
+                />
+                <Route path="/bookmarks" element={<Bookmarks />} />
+                <Route path="/writers" element={<Writers />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route path="/signup" element={<SignUp />} />
+              </Routes>
+            </main>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </CommentProvider>
       </BookmarkProvider>
     </Router>
   );

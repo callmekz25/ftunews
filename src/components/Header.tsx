@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [showCategories, setShowCategories] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -23,6 +24,10 @@ export default function Header() {
     { name: "Entertainment", slug: "entertainment" },
     { name: "Science", slug: "science" },
     { name: "History", slug: "history" },
+    { name: "Health", slug: "health" },
+    { name: "Business", slug: "business" },
+    { name: "Lifestyle", slug: "lifestyle" },
+    { name: "Environment", slug: "environment" },
   ];
 
   return (
@@ -32,6 +37,7 @@ export default function Header() {
           <span className="text-black">FTU News</span>
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
           <li>
             <Link to="/" className="hover:text-black transition">
@@ -85,7 +91,7 @@ export default function Header() {
         </ul>
 
         <div className="flex items-center gap-4">
-          <form onSubmit={handleSearch} className="relative">
+          <form onSubmit={handleSearch} className="relative hidden sm:block">
             <input
               type="text"
               placeholder="Search articles..."
@@ -112,8 +118,101 @@ export default function Header() {
               </svg>
             </button>
           </form>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  showMobileMenu
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M4 6h16M4 12h16M4 18h16"
+                }
+              />
+            </svg>
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {showMobileMenu && (
+        <div className="md:hidden border-t border-gray-200 bg-white">
+          <div className="px-4 py-4 space-y-4">
+            <form onSubmit={handleSearch} className="relative sm:hidden">
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-3 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-600 text-sm"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-900 transition"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+            </form>
+
+            <Link
+              to="/"
+              className="block text-sm font-medium hover:text-blue-600 transition"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Home
+            </Link>
+
+            <div>
+              <p className="text-sm font-semibold text-gray-900 mb-2">
+                Categories
+              </p>
+              <div className="space-y-2 pl-4">
+                {categories.map((category) => (
+                  <Link
+                    key={category.slug}
+                    to={`/category/${category.slug}`}
+                    className="block text-sm hover:text-blue-600 transition"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <Link
+              to="/bookmarks"
+              className="block text-sm font-medium hover:text-blue-600 transition"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Bookmarks
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
